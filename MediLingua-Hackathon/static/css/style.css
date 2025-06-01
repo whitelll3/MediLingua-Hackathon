@@ -1,0 +1,83 @@
+/* MediLingua Styles */
+
+body {
+    background-color: #f8f9fa;
+    color: #333;
+    font-family: 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+}
+
+.container {
+    max-width: 1200px;
+}
+
+/* Header styles */
+header {
+    border-bottom: 1px solid #dee2e6;
+    padding-bottom: 1rem;
+}
+
+/* Card customization */
+.card {
+    border-radius: 0.5rem;
+    box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+    border: none;
+}
+
+.card-header {
+    border-radius: 0.5rem 0.5rem 0 0 !important;
+}
+
+/* Button styling */
+.btn-primary {
+    background-color: #0d6efd;
+    border-color: #0d6efd;
+}
+
+.btn-primary:hover {
+    background-color: #0b5ed7;
+    border-color: #0a58ca;
+}
+
+/* Recording button styling */
+#recordButton {
+    width: 150px;
+}
+
+#stopButton {
+    width: 150px;
+}
+
+/* Recording animation */
+@keyframes pulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(220, 53, 69, 0.7);
+    }
+    70% {
+        box-shadow: 0 0 0 10px rgba(220, 53, 69, 0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(220, 53, 69, 0);
+    }
+}
+
+.recording {
+    animation: pulse 2s infinite;
+}
+
+/* Results styling */
+.bg-light {
+    background-color: #f8f9fa;
+    border: 1px solid #e9ecef;
+    border-radius: 0.375rem;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .card-group {
+        display: block;
+    }
+    
+    .card {
+        margin-bottom: 1rem;
+    }
+}

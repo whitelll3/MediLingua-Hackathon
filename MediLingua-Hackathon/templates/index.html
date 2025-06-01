@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MediLingua</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8">
+                <header class="my-4">
+                    <h1 class="display-4">MediLingua</h1>
+                    <p class="lead">AI-Powered Medical Documentation Assistant</p>
+                </header>
+
+                <section class="mb-4">
+                    <p>Welcome to MediLingua, your cutting-edge AI-powered medical documentation assistant designed to streamline the documentation process for healthcare professionals. MediLingua revolutionizes the way medical notes are created and managed, leveraging advanced AI to transcribe, translate, and protect sensitive medical conversations with unparalleled accuracy and efficiency.</p>
+                    <p><strong>Using MediLingua is as intuitive as it is innovative:</strong> Simply record your voice using the microphone below, and our AI will handle the rest!</p>
+                </section>
+
+                <div class="card mb-4">
+                    <div class="card-header bg-primary text-white">
+                        <h2 class="h5 mb-0">Voice Recording</h2>
+                    </div>
+                    <div class="card-body">
+                        <div class="d-flex justify-content-center mb-3">
+                            <button id="recordButton" class="btn btn-primary btn-lg">
+                                <i class="bi bi-mic-fill"></i> Start Recording
+                            </button>
+                            <button id="stopButton" class="btn btn-danger btn-lg ms-2" disabled>
+                                <i class="bi bi-stop-fill"></i> Stop
+                            </button>
+                        </div>
+                        <div id="recordingStatus" class="text-center mb-3 d-none">
+                            Recording... <span id="recordingTimer">0:00</span>
+                            <div class="progress mt-2">
+                                <div id="recordingProgress" class="progress-bar progress-bar-striped progress-bar-animated" style="width: 0%"></div>
+                            </div>
+                        </div>
+                        <div id="audioPlayback" class="text-center d-none">
+                            <audio id="audioPlayer" controls class="w-100"></audio>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="transcriptionSection" class="card mb-4 d-none">
+                    <div class="card-header bg-info text-white">
+                        <h2 class="h5 mb-0">Transcribed Text</h2>
+                        <small class="text-light" id="wordCount">0 words</small>
+                    </div>
+                    <div class="card-body">
+                        <div id="transcriptionResult" class="p-3 bg-light rounded"></div>
+                    </div>
+                </div>
+
+                <div id="translationSection" class="card mb-4 d-none">
+                    <div class="card-header bg-success text-white">
+                        <h2 class="h5 mb-0">Translation</h2>
+                    </div>
+                    <div class="card-body">
+                        <div class="mb-3">
+                            <label for="targetLanguage" class="form-label">Target Language:</label>
+                            <input type="text" id="targetLanguage" class="form-control" placeholder="Enter language (e.g., Spanish, French, German)">
+                        </div>
+                        <button id="translateButton" class="btn btn-success">Translate</button>
+                        
+                        <div id="translationResult" class="mt-3 p-3 bg-light rounded d-none"></div>
+                    </div>
+                </div>
+
+                <div id="deanonymizedSection" class="card mb-4 d-none">
+                    <div class="card-header bg-warning text-dark">
+                        <h2 class="h5 mb-0">Deanonymized Medical Note (HIPAA Compliant)</h2>
+                    </div>
+                    <div class="card-body">
+                        <div id="deanonymizedResult" class="p-3 bg-light rounded"></div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-4">
+                <div class="card mt-4 mb-4">
+                    <div class="card-header bg-dark text-white">
+                        <h3 class="h5 mb-0">About MediLingua</h3>
+                    </div>
+                    <div class="card-body">
+                        <img src="{{ url_for('static', filename='img/logo.png') }}" alt="MediLingua Logo" class="img-fluid mb-3">
+                        
+                        <h4 class="h6">Market Research and Potential Revenue:</h4>
+                        <ul class="small">
+                            <li>HIPAA fines avoidance: $50,000/incident.</li>
+                            <li>Potential ROI per institution: 600,000 USD.</li>
+                            <li>Industry potential for Privacy Compliance: 3.6 Billion USD annually.</li>
+                            <li>Automated translation savings: 319.27 Million USD annually.</li>
+                            <li>Physician time savings: $71,050/doctor/year.</li>
+                        </ul>
+                        
+                        <a href="/about" class="btn btn-outline-primary btn-sm d-block">Learn More</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="{{ url_for('static', filename='js/recorder.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+</body>
+</html>
