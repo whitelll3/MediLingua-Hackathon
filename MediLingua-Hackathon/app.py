@@ -27,6 +27,13 @@ OPENAI_API_KEY = getattr(config, 'OPENAI_API_KEY', None)
 # Ensure upload directory exists
 os.makedirs(app.config['UPLOAD_FOLDER'], exist_ok=True)
 
+def validate_audio_file(file):
+    """Basic validation for uploaded audio files"""
+    allowed_extensions = ['.wav', '.mp3', '.m4a', '.flac']
+    if not file.filename:
+        return False
+    return True
+
 # Check if FFmpeg is installed
 try:
     subprocess.run(['ffmpeg', '-version'], check=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
