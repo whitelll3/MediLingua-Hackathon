@@ -206,6 +206,16 @@ def transcribe():
         if file_size == 0:
             raise ValueError("The audio file is empty")
         
+        # Check for reasonable file size limits (minimum 1KB, maximum based on config)
+        min_size = 1024  # 1KB minimum
+        max_size = app.config.get('MAX_CONTENT_LENGTH', 25 * 1024 * 1024)
+        
+        if file_size < min_size:
+            raise ValueError(f"Audio file too small (minimum {min_size} bytes)")
+        
+        if file_size > max_size:
+            raise ValueError(f"Audio file too large (maximum {max_size} bytes)")
+        
         # Create a temporary file with .wav extension if needed
         # OpenAI's Whisper API works better with WAV format
         if not file_path.lower().endswith(('.wav', '.mp3', '.m4a')):
