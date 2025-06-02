@@ -29,9 +29,14 @@ os.makedirs(app.config['UPLOAD_FOLDER'], exist_ok=True)
 
 def validate_audio_file(file):
     """Basic validation for uploaded audio files"""
-    allowed_extensions = ['.wav', '.mp3', '.m4a', '.flac']
+    allowed_extensions = ['.wav', '.mp3', '.m4a', '.flac', '.ogg']
     if not file.filename:
         return False
+    
+    file_ext = os.path.splitext(file.filename.lower())[1]
+    if file_ext not in allowed_extensions:
+        return False
+    
     return True
 
 # Check if FFmpeg is installed
@@ -178,6 +183,9 @@ def transcribe():
     audio_file = request.files['audio']
     if audio_file.filename == '':
         return jsonify({'error': 'No audio file selected'}), 400
+    
+    if not validate_audio_file(audio_file):
+        return jsonify({'error': 'Invalid audio file format. Supported formats: WAV, MP3, M4A, FLAC, OGG'}), 400
     
     # Create a temporary file to handle any audio format issues
     temp_file = None
