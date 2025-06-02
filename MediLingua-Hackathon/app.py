@@ -320,7 +320,9 @@ def health_check():
         "status": "ok",
         "ffmpeg_installed": True,
         "openai_api": OPENAI_API_KEY is not None,
-        "python_version": sys.version
+        "python_version": sys.version,
+        "upload_folder_exists": os.path.exists(app.config['UPLOAD_FOLDER']),
+        "max_file_size_mb": app.config['MAX_CONTENT_LENGTH'] // (1024 * 1024)
     }
     
     try:
